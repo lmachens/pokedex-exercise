@@ -5,12 +5,13 @@ import {
   createPokemons,
   removeChilds
 } from './api/elements';
-import { getPokemonsByName } from './api/pokemons';
+import { getPokemonsByName, sortPokemonsByName } from './api/pokemons';
 import pokemons from 'json-pokemon';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
 const resultsElement = document.querySelector('.results');
+const sortButton = document.querySelector('.sort__button');
 
 // Reset input and results
 resetInput(searchInput);
@@ -28,14 +29,18 @@ searchInput.addEventListener('change', function() {
    */
 
   //const selection = pokemons.filter(({ name }) => name.startsWith(searchInput));
+
   removeChilds(resultsElement);
   const PokemonSearch = getPokemonsByName(searchInput.value);
-
   PokemonSearch.forEach(createPokemons);
+});
 
-  /**
-   * Search for your pokemons now, create elements and add them to your results.
-   */
+sortButton.addEventListener('click', function() {
+  removeChilds(resultsElement);
+  const PokemonSearch = getPokemonsByName(searchInput.value);
+  console.log(PokemonSearch);
+  sortPokemonsByName(PokemonSearch);
+  PokemonSearch.forEach(createPokemons);
 });
 
 /**

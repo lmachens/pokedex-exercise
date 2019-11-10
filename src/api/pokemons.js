@@ -27,11 +27,8 @@ export function getPokemonsByName(pokemonName) {
  * It should be case independend.
  */
 
-export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
-  /**
-   * `sortDirection` could be `ASC` or `DESC`. Try to reverse the results if `sortDirection` is `DESC`.
-   *
-   * See Array.prototype.sort()
-   */
+export function sortPokemonsByName(pokemons) {
+  pokemons = pokemons.reverse(pokemons.name);
+
   return pokemons;
 }
