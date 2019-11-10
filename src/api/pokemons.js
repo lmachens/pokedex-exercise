@@ -28,7 +28,15 @@ export function getPokemonsByName(pokemonName) {
  */
 
 export function sortPokemonsByName(pokemons) {
-  pokemons = pokemons.reverse(pokemons.name);
+  pokemons.sort(function(a, b) {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    if (nameA < nameB)
+      //sort string ascending
+      return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
 
   return pokemons;
 }
