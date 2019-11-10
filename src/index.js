@@ -1,4 +1,12 @@
-import { createNoPokemons, setChild, resetInput } from './api/elements';
+import {
+  createNoPokemons,
+  setChild,
+  resetInput,
+  createPokemons,
+  removeChilds
+} from './api/elements';
+import { getPokemonsByName } from './api/pokemons';
+import pokemons from 'json-pokemon';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
@@ -13,12 +21,17 @@ setChild(resultsElement, createNoPokemons());
 /**
  * Find the correct event to listen for input changes.
  */
-searchInput.addEventListener('REPLACE_ME', event => {
+searchInput.addEventListener('change', function() {
   /**
    * You can verify that this event is fired in the Browser console.
    * Can you find the value of searchInput in this event?
    */
-  console.log('Great! This event is fired:', event);
+
+  //const selection = pokemons.filter(({ name }) => name.startsWith(searchInput));
+  removeChilds(resultsElement);
+  const PokemonSearch = getPokemonsByName(searchInput.value);
+
+  PokemonSearch.forEach(createPokemons);
 
   /**
    * Search for your pokemons now, create elements and add them to your results.
