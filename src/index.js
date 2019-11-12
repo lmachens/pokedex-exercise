@@ -1,5 +1,16 @@
-import { createNoPokemons, setChild, resetInput } from './api/elements';
-import { getAllPokemon, showAllPokemons } from './api/pokemons';
+import {
+  createNoPokemons,
+  setChild,
+  resetInput,
+  removeChilds
+} from './api/elements';
+import {
+  getAllPokemon,
+  showAllPokemons,
+  showPokemons,
+  getPokemonsByName
+} from './api/pokemons';
+import { noop } from '@babel/types';
 
 // Query element
 const searchInput = document.querySelector('.search__input');
@@ -12,13 +23,20 @@ console.log(allPokemons);
 /**
  * Find the correct event to listen for input changes.
  */
-showAllPokemons();
 searchInput.addEventListener('input', event => {
   /**
    * You can verify that this event is fired in the Browser console.
    * Can you find the value of searchInput in this event?
    */
-  console.log('Great! This event is fired:', event.target.value);
+  removeChilds(resultsElement);
+  const queryList = getPokemonsByName(event.target.value);
+
+  if (queryList == '') {
+    console.log('Herzlichen Glückwunsch, alles richtig gemacht');
+    resultsElement.appendChild(createNoPokemons());
+  }
+  showPokemons(queryList);
+  console.log('Great! This event is fired:', event.target.value, queryList);
 
   /**
    * Search for your pokemons now, create elements and add them to your results.

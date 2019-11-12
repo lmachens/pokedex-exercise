@@ -8,16 +8,26 @@
  */
 const resultsElement = document.querySelector('.results');
 import pokemons from 'json-pokemon';
+
 export function getAllPokemon() {
   return pokemons;
 }
 
-export function showAllPokemons() {
-  pokemons.forEach(pokemon => {
+export function showPokemons(pokeList) {
+  pokeList.forEach(pokemon => {
     let newItem = document.createElement('div');
     newItem.innerHTML = pokemon.name;
     resultsElement.appendChild(newItem);
   });
+}
+
+export function getPokemonsByName(pokemonName) {
+  const normalizedQueryInput = pokemonName.toLowerCase();
+  const matchedPokemon = pokemons.filter(pokemon => {
+    const normalizedPokemonName = pokemon.name.toLowerCase();
+    return normalizedPokemonName.match(normalizedQueryInput);
+  });
+  return matchedPokemon;
 }
 /**
  * pokemonName is unused.
