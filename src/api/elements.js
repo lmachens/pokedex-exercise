@@ -3,6 +3,7 @@
  *    No Pokemons found
  * </div>
  */
+import pokemons from 'json-pokemon';
 export function createNoPokemons() {
   const element = document.createElement('div');
   element.className = 'results__empty';

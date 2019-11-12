@@ -2,7 +2,7 @@ import { getPokemonsByName, sortPokemonsByName } from './pokemons';
 import getPokemons from 'json-pokemon/getPokemon';
 
 test('filter pokemons by `pik` returns Pikachu and Pikipek', () => {
-  const pokemons = getPokemonsByName('pik');
+  const pokemons = getPokemonsByName('Pik');
 
   expect(pokemons.length).toBe(2);
   expect(pokemons[0].name).toBe('Pikachu');
