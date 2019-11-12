@@ -4,7 +4,11 @@ import {
   setChild,
   resetInput
 } from './api/elements';
-import { getPokemonsByName, getAllPokemons } from './api/pokemons';
+import {
+  getPokemonsByName,
+  getAllPokemons,
+  sortPokemonsByName
+} from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
@@ -12,10 +16,10 @@ const resultsElement = document.querySelector('.results');
 
 // Get all pokemons
 const allPokemons = getAllPokemons();
-
+const allSortedPokemons = sortPokemonsByName(allPokemons);
 // Reset input and results
 resetInput(searchInput);
-const allPokemonElements = createPokemonElements(allPokemons);
+const allPokemonElements = createPokemonElements(allSortedPokemons);
 setChild(resultsElement, allPokemonElements);
 
 // Add event listeners
@@ -27,7 +31,8 @@ searchInput.addEventListener('input', event => {
     const noPokemonsElement = createNoPokemons();
     setChild(resultsElement, noPokemonsElement);
   } else {
-    const pokemonElements = createPokemonElements(pokemons);
+    const sortedPokemons = sortPokemonsByName(pokemons);
+    const pokemonElements = createPokemonElements(sortedPokemons);
     setChild(resultsElement, pokemonElements);
   }
 });
