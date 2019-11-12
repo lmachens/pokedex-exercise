@@ -8,6 +8,10 @@
  */
 import pokemons from 'json-pokemon';
 
+export function getAllPokemons() {
+  return pokemons;
+}
+
 export function getPokemonsByName(pokemonName) {
   /**
    * pokemonName is unused.
