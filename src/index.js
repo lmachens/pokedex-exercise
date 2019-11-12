@@ -1,29 +1,35 @@
-import { createNoPokemons, setChild, resetInput } from './api/elements';
+import {
+  createNoPokemons,
+  setChild,
+  resetInput,
+  createPokemons,
+  createPokemonElement
+} from './api/elements';
+
+import { getPokemonsByName, getAllPokemons } from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
 const resultsElement = document.querySelector('.results');
 
+//Get all Pokemons
+const allPokemons = getAllPokemons();
+
 // Reset input and results
 resetInput(searchInput);
-setChild(resultsElement, createNoPokemons());
+const allPokemonElement = createPokemons(allPokemons);
+setChild(resultsElement, allPokemonElement);
 
 // Add event listeners
 
-/**
- * Find the correct event to listen for input changes.
- */
-searchInput.addEventListener('REPLACE_ME', event => {
-  /**
-   * You can verify that this event is fired in the Browser console.
-   * Can you find the value of searchInput in this event?
-   */
-  console.log('Great! This event is fired:', event);
-
-  /**
-   * Search for your pokemons now, create elements and add them to your results.
-   */
+searchInput.addEventListener('input', event => {
+  console.log('Great! This event is fired:', event.target.value);
 });
+
+console.log(getPokemonsByName('pika'));
+/**
+ * Search for your pokemons now, create elements and add them to your results.
+ */
 
 /**
  * Later, you can add sort functionality.
