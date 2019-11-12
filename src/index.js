@@ -14,7 +14,8 @@ const resultsElement = document.querySelector('.results');
 
 // Reset input and results
 resetInput(searchInput);
-setChild(resultsElement, createNoPokemons());
+const allPokemons = getAllPokemons();
+setChild(resultsElement, createPokemonElements(allPokemons));
 
 // console.log(createPokemonElements());
 // Add event listeners
