@@ -1,4 +1,12 @@
-import { createNoPokemons, setChild, resetInput } from './api/elements';
+import {
+  createNoPokemons,
+  setChild,
+  resetInput,
+  removeChilds,
+  createPokemonElements,
+  createPokemonElement
+} from './api/elements';
+import { getPokemonsByName, getAllPokemons } from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
@@ -8,6 +16,7 @@ const resultsElement = document.querySelector('.results');
 resetInput(searchInput);
 setChild(resultsElement, createNoPokemons());
 
+// console.log(createPokemonElements());
 // Add event listeners
 
 /**
@@ -23,6 +32,7 @@ searchInput.addEventListener('input', event => {
   /**
    * Search for your pokemons now, create elements and add them to your results.
    */
+  setChild(resultsElement, createPokemonElements(getAllPokemons()));
 });
 
 /**

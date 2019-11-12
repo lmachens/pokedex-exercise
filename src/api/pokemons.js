@@ -8,6 +8,10 @@
  */
 import pokemons from 'json-pokemon';
 
+export function getAllPokemons() {
+  return pokemons;
+}
+
 export function getPokemonsByName(pokemonName) {
   /**
    * pokemonName is unused.
@@ -17,6 +21,7 @@ export function getPokemonsByName(pokemonName) {
    * Try to return all pokemons which starts with the name like: `pik` -> `Pikachu`, `Pikipek`.
    * It should be case independend.
    */
+
   return pokemons;
 }
 
