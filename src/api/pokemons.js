@@ -13,15 +13,13 @@ export function getAllPokemons() {
 }
 
 export function getPokemonsByName(pokemonName) {
-  /**
-   * pokemonName is unused.
-   * You could use this property to filter the pokemons by name.
-   * Take a look: Array.prototype.filter()
-   *
-   * Try to return all pokemons which starts with the name like: `pik` -> `Pikachu`, `Pikipek`.
-   * It should be case independend.
-   */
-  return pokemons;
+  const normalizedName = pokemonName.toLowerCase();
+  const pickPokemons = pokemons.filter(pokemon => {
+    const normalizedPokemonName = pokemon.name.toLowerCase();
+    return normalizedPokemonName.startsWith(normalizedName);
+  });
+
+  return pickPokemons;
 }
 
 export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
