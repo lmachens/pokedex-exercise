@@ -3,7 +3,8 @@ import {
   setChild,
   resetInput,
   createPokemons,
-  createPokemonElement
+  createPokemonElement,
+  removeChilds
 } from './api/elements';
 
 import { getPokemonsByName, getAllPokemons } from './api/pokemons';
@@ -23,14 +24,12 @@ setChild(resultsElement, allPokemonElement);
 // Add event listeners
 
 searchInput.addEventListener('input', event => {
-  console.log('Great! This event is fired:', event.target.value);
+  const searchValue = event.target.value;
+  const pokemons = getPokemonsByName(searchValue);
+  const pokemonElements = createPokemons(pokemons);
+  if (pokemons.length > 0) {
+    setChild(resultsElement, pokemonElements);
+  } else {
+    setChild(resultsElement, createNoPokemons());
+  }
 });
-
-console.log(getPokemonsByName('pika'));
-/**
- * Search for your pokemons now, create elements and add them to your results.
- */
-
-/**
- * Later, you can add sort functionality.
- */
