@@ -54,7 +54,6 @@ export function sortPokemonsByName(pokemons, sortDirection = 'DESC') {
     if (nameA > nameB) {
       return 1;
     }
-
     return 0;
   });
   if (sortDirection === 'DESC') {
