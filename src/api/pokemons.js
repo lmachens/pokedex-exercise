@@ -5,10 +5,12 @@ export function getAllPokemons() {
 }
 
 export function getPokemonsByName(pokemonName) {
-  const pickPokemon = pokemons.filter(i =>
-    i.name.startsWith(pokemonName, 'pik')
-  );
-  return pickPokemon;
+  const normalizedName = pokemonName.toLowerCase();
+  const pickPokemons = pokemons.filter(pokemon => {
+    const normalizedPokemon = pokemon.name.toLowerCase();
+    return normalizedPokemon.startsWith(normalizedName);
+  });
+  return pickPokemons;
 }
 
 export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
