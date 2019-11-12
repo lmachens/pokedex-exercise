@@ -7,18 +7,23 @@
  * There are some helper functions which makes this task easier, but please try to implement your own filter and search logic.
  */
 import pokemons from 'json-pokemon';
+// console.log(pokemons);
 
 export function getPokemonsByName(pokemonName) {
-  /**
-   * pokemonName is unused.
-   * You could use this property to filter the pokemons by name.
-   * Take a look: Array.prototype.filter()
-   *
-   * Try to return all pokemons which starts with the name like: `pik` -> `Pikachu`, `Pikipek`.
-   * It should be case independend.
-   */
-  return pokemons;
+  const selection = pokemons.filter(({ name }) => name.match('Pik'));
+
+  return selection;
 }
+
+// let filterPoke = (name) => {
+//   return pokemons.filter(data => {
+//     return (data.toLowerCase().indexOf(name.toLowerCase()) > -1);
+//   });
+// };
+
+// console.log(filterPoke('piku')
+
+// console.log(pokemons)
 
 export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
   /**

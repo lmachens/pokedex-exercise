@@ -3,6 +3,8 @@
  *    No Pokemons found
  * </div>
  */
+import pokemons from 'json-pokemon';
+
 export function createNoPokemons() {
   const element = document.createElement('div');
   element.className = 'results__empty';
@@ -10,8 +12,12 @@ export function createNoPokemons() {
   element.appendChild(content);
   return element;
 }
+// console.log(pokemons.find('Pikachu'));
 
 export function createPokemons(pokemons) {
+  // const pokemonFind = pokemons.filter(obj => {
+  //   return obj.name === "Pikachu";
+  // console.log(pokemonName);
   /**
    * This function could receive an array of pokemons and creates elements for each of them.
    * You can use createPokemon to create a single element.
