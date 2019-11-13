@@ -21,8 +21,12 @@ export function getPokemonsByName(pokemonName) {
    * Try to return all pokemons which starts with the name like: `pik` -> `Pikachu`, `Pikipek`.
    * It should be case independend.
    */
-
-  return pokemons;
+  const myNormalizedPokemonName = pokemonName.toLowerCase();
+  const foundPokemons = pokemons.filter(({ name }) => {
+    const normalizedPokemonName = name.toLowerCase();
+    return normalizedPokemonName.match(myNormalizedPokemonName);
+  });
+  return foundPokemons;
 }
 
 export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {

@@ -15,11 +15,9 @@ const resultsElement = document.querySelector('.results');
 // Reset input and results
 resetInput(searchInput);
 const allPokemons = getAllPokemons();
-setChild(resultsElement, createPokemonElements(allPokemons));
-
-// console.log(createPokemonElements());
+const allPokemonElements = createPokemonElements(allPokemons);
+setChild(resultsElement, allPokemonElements);
 // Add event listeners
-
 /**
  * Find the correct event to listen for input changes.
  */
@@ -29,11 +27,13 @@ searchInput.addEventListener('input', event => {
    * Can you find the value of searchInput in this event?
    */
   console.log('Great! This event is fired:', event);
-
   /**
    * Search for your pokemons now, create elements and add them to your results.
    */
-  setChild(resultsElement, createPokemonElements(getAllPokemons()));
+  removeChilds(resultsElement);
+  const filteredPokemons = getPokemonsByName(searchInput.value);
+  const filteredPokemonElements = createPokemonElements(filteredPokemons);
+  setChild(resultsElement, filteredPokemonElements);
 });
 
 /**
