@@ -38,7 +38,28 @@ export function getPokemonsByName(pokemonName) {
  * It should be case independend.
  */
 
-export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
+export function sortPokemonsByName(pokemons) {
+  return pokemons.sort((pokemonA, pokemonB) => {
+    const nameA = pokemonA.name.toLowerCase;
+    const nameB = pokemonB.name.toLowerCase;
+    if (sortDirection.toLowerCase === 'DESC') {
+      if (nameA > nameB) {
+        return 1;
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      return 0;
+    } else if (sortDirection === 'ASC') {
+      if (nameA > nameB) {
+        return 1;
+      }
+      if (nameA < nameB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
   /**
    * `sortDirection` could be `ASC` or `DESC`. Try to reverse the results if `sortDirection` is `DESC`.
    *

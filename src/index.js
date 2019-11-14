@@ -32,11 +32,12 @@ searchInput.addEventListener('input', event => {
   const queryList = getPokemonsByName(event.target.value);
 
   if (queryList == '') {
-    console.log('Herzlichen Glückwunsch, alles richtig gemacht');
     resultsElement.appendChild(createNoPokemons());
   }
   showPokemons(queryList);
   console.log('Great! This event is fired:', event.target.value, queryList);
+
+  
 
   /**
    * Search for your pokemons now, create elements and add them to your results.
