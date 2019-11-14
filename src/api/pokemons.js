@@ -14,14 +14,22 @@ export function getPokemonsByName(pokemonName) {
 }
 
 export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
-  if (sortDirection === 'ASC') {
-    const sortASC = pokemons.sort(function(a, b) {
-      a.name.localCompare(b.name);
-    });
-    return sortASC;
-  } else sortDirection === 'DESC';
-  const sortDESC = pokemons.sort(function(a, b) {
-    a.name.localCompare(b.name);
+  const sortedPokemons = pokemons.sort((pokemonA, pokemonB) => {
+    const nameA = pokemonA.name.toLowerCase();
+    const nameB = pokemonB.name.toLowerCase();
+
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameB > nameA) {
+      return 1;
+    }
+
+    return 0;
   });
-  return sortDESC;
+
+  if (sortDirection === 'DESC') {
+    sortedPokemons.reverse();
+  }
+  return sortedPokemons;
 }
