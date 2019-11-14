@@ -1,4 +1,21 @@
-import pokemons from './pokemons.json';
+// import pokemons from './pokemons.json';
+
+// let promise = fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+// promise = promise.then(response => response.json());
+// promise.then(data => console.log(data));
+
+let pokemons = [];
+export async function initPokemons() {
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+  const data = await response.json();
+  pokemons = data.results;
+}
+
+export async function getPokemonDetails(pokemonUrl) {
+  const response = await fetch(pokemonUrl);
+  const data = await response.json();
+  return data;
+}
 
 export function getAllPokemons() {
   return pokemons;
