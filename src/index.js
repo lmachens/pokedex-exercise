@@ -18,7 +18,6 @@ const resultsElement = document.querySelector('.results');
 const allPokemons = getAllPokemon();
 // Reset input and results
 // Add event listeners
-console.log(allPokemons);
 
 /**
  * Find the correct event to listen for input changes.
@@ -34,10 +33,9 @@ searchInput.addEventListener('input', event => {
   if (queryList == '') {
     resultsElement.appendChild(createNoPokemons());
   }
+
   showPokemons(queryList);
   console.log('Great! This event is fired:', event.target.value, queryList);
-
-  
 
   /**
    * Search for your pokemons now, create elements and add them to your results.
