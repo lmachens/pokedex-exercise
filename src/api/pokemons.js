@@ -35,5 +35,16 @@ export function sortPokemonsByName(pokemons, sortDirection = 'ASC') {
    *
    * See Array.prototype.sort()
    */
-  return pokemons;
+
+  const sortedPokemons = pokemons.sort((a, b) => {
+    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+  });
+  return sortedPokemons;
 }

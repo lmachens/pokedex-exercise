@@ -6,7 +6,11 @@ import {
   createPokemonElements,
   createPokemonElement
 } from './api/elements';
-import { getPokemonsByName, getAllPokemons } from './api/pokemons';
+import {
+  getPokemonsByName,
+  getAllPokemons,
+  sortPokemonsByName
+} from './api/pokemons';
 
 // Query elements
 const searchInput = document.querySelector('.search__input');
@@ -15,7 +19,8 @@ const resultsElement = document.querySelector('.results');
 // Reset input and results
 resetInput(searchInput);
 const allPokemons = getAllPokemons();
-const allPokemonElements = createPokemonElements(allPokemons);
+const allPokemonsSortedAsc = sortPokemonsByName(allPokemons);
+const allPokemonElements = createPokemonElements(allPokemonsSortedAsc);
 setChild(resultsElement, allPokemonElements);
 // Add event listeners
 /**
