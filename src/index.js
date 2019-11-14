@@ -36,7 +36,3 @@ searchInput.addEventListener('input', event => {
     setChild(resultsElement, pokemonElements);
   }
 });
-
-/**
- * Later, you can add sort functionality.
- */
