@@ -1,46 +1,53 @@
+// required to use async/await
+import 'babel-polyfill';
+
 import {
   createNoPokemons,
   setChild,
   resetInput,
   removeChilds,
-  createPokemonElements,
-  createPokemonElement
+  createPokemonElements
 } from './api/elements';
 import {
   getPokemonsByName,
   getAllPokemons,
-  sortPokemonsByName
+  sortPokemonsByName,
+  initPokemons
 } from './api/pokemons';
 
-// Query elements
-const searchInput = document.querySelector('.search__input');
-const resultsElement = document.querySelector('.results');
+initPokemons().then(start);
 
-// Reset input and results
-resetInput(searchInput);
-const allPokemons = getAllPokemons();
-const allPokemonsSortedAsc = sortPokemonsByName(allPokemons);
-const allPokemonElements = createPokemonElements(allPokemonsSortedAsc);
-setChild(resultsElement, allPokemonElements);
-// Add event listeners
-/**
- * Find the correct event to listen for input changes.
- */
-searchInput.addEventListener('input', event => {
-  /**
-   * You can verify that this event is fired in the Browser console.
-   * Can you find the value of searchInput in this event?
-   */
-  console.log('Great! This event is fired:', event);
-  /**
-   * Search for your pokemons now, create elements and add them to your results.
-   */
-  removeChilds(resultsElement);
-  const filteredPokemons = getPokemonsByName(searchInput.value);
-  const filteredPokemonElements = createPokemonElements(filteredPokemons);
-  setChild(resultsElement, filteredPokemonElements);
-});
+function start() {
+  // Query elements
+  const searchInput = document.querySelector('.search__input');
+  const resultsElement = document.querySelector('.results');
 
-/**
- * Later, you can add sort functionality.
- */
+  // Get all pokemons
+  const allPokemons = getAllPokemons();
+  allPokemons.forEach(
+    pokemon =>
+      (pokemon.name =
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1))
+  );
+  console.log(allPokemons);
+  const allSortedPokemons = sortPokemonsByName(allPokemons);
+
+  // Reset input and results
+  resetInput(searchInput);
+  const allPokemonElements = createPokemonElements(allSortedPokemons);
+  setChild(resultsElement, allPokemonElements);
+
+  // Add event listeners
+  searchInput.addEventListener('input', event => {
+    /**
+     * Search for your pokemons now, create elements and add them to your results.
+     */
+    removeChilds(resultsElement);
+    const filteredPokemons = getPokemonsByName(
+      searchInput.value,
+      getAllPokemons()
+    );
+    const filteredPokemonElements = createPokemonElements(filteredPokemons);
+    setChild(resultsElement, filteredPokemonElements);
+  });
+}

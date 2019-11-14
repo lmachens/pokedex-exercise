@@ -1,4 +1,14 @@
-import pokemons from '../data/pokemons.json';
+// const response = await fetch('url');
+// const data = await response.json();
+// console.log(data);
+
+let pokemons = [];
+
+export async function initPokemons() {
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+  const data = await response.json();
+  pokemons = data.results;
+}
 
 export function getAllPokemons() {
   return pokemons;

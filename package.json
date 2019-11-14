@@ -4,6 +4,8 @@
   "description": "Search and filter arrays example",
   "main": "index.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "json-pokemon": "^1.0.0",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
@@ -16,7 +18,7 @@
     "sass": "^1.23.3"
   },
   "scripts": {
-    "dev": "parcel src/*.html",
+    "dev": "parcel src/*.html -p 3254",
     "build": "parcel build src/*.html",
     "test": "jest",
     "test-watch": "jest --watch"
