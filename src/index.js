@@ -1,16 +1,10 @@
-import {
-  createNoPokemons,
-  setChild,
-  resetInput,
-  removeChilds
-} from './api/elements';
+import { createNoPokemons, removeChilds } from './api/elements';
 import {
   getAllPokemon,
   showAllPokemons,
   showPokemons,
   getPokemonsByName
 } from './api/pokemons';
-import { noop } from '@babel/types';
 
 // Query element
 const searchInput = document.querySelector('.search__input');
